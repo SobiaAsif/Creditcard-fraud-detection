@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Credit Card Fraud Detection</h1>
+            <p>Real-Time Fraud Detection & Monitoring System</p>
+        </header>
+
+        <!-- System Status -->
+        <section class="health-card">
+            <h2>System Status</h2>
+            <p id="status">Checking API...</p>
+            <p id="model-status">Model: Checking...</p>
+            <p id="scaler-status">Scaler: Checking...</p>
+            <p id="shap-status">SHAP: Checking...</p>
+        </section>
+
+        <!-- Monitoring Statistics -->
+        <section>
+            <h2>Monitoring Overview</h2>
+            <p id="last-updated">Last Updated: --</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Transactions</h3>
+                    <p id="total-transactions">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Fraud Transactions</h3>
+                    <p id="fraud-transactions">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Legitimate Transactions</h3>
+                    <p id="legitimate-transactions">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Fraud Rate</h3>
+                    <p id="fraud-rate">0.00%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Statistics & Chart -->
+        <section>
+            <h2>Risk Distribution</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>High Risk</h3>
+                    <p id="high-risk">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Medium Risk</h3>
+                    <p id="medium-risk">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Low Risk</h3>
+                    <p id="low-risk">0</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Risk Distribution Chart</h3>
+                <div class="chart-wrapper">
+                    <canvas id="risk-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+<!-- Monitoring Analytics -->
+<section>
+    <h2>Fraud Monitoring Analytics</h2>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Fraud Detection Rate</h3>
+            <p id="fraud-detection-rate">0 / 0</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>High Risk Rate</h3>
+            <p id="high-risk-rate">0%</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Average Fraud Probability</h3>
+            <p id="average-fraud-probability">0%</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Latest Activity</h3>
+            <p id="latest-activity">--</p>
+        </div>
+
+    </div>
+</section>
+
+        <!-- Transaction Prediction -->
+        <section>
+            <h2>Transaction Prediction</h2>
+
+            <div class="prediction-card">
+                <p>Enter transaction features to check for fraud.</p>
+
+                <div class="sample-buttons">
+                    <button type="button" onclick="loadLegitimateSample()">Load Legitimate Sample</button>
+                    <button type="button" onclick="loadFraudSample()">Load Fraud Sample</button>
+                </div>
+
+                <div class="threshold-control">
+                    <label for="threshold">
+                        Detection Threshold: <strong id="threshold-value">50%</strong>
+                    </label>
+                    <input type="range" id="threshold" min="1" max="99" value="50" step="1">
+                    <p>Transactions with a fraud probability at or above this threshold will be classified as Fraud.</p>
+                </div>
+
+                <div class="input-grid">
+                    <div>
+                        <label for="Time">Time</label>
+                        <input type="number" id="Time" step="any">
+                    </div>
+                    <div>
+                        <label for="Amount">Amount</label>
+                        <input type="number" id="Amount" step="any">
+                    </div>
+                </div>
+
+                <h3>Transaction Features</h3>
+
+                <div class="feature-info">
+                    <p>
+                        <strong>About V1–V28:</strong> These are anonymized numerical features generated from the original transaction data using Principal Component Analysis (PCA). Their individual real-world meanings are not provided in the dataset, but they are required by the fraud detection model.
+                    </p>
+                </div>
+
+                <div id="feature-inputs" class="input-grid"></div>
+
+                <button type="button" onclick="predictTransaction()">Detect Fraud</button>
+            </div>
+
+           <!-- Urgent Alert Banner -->
+<div id="fraud-alert" class="fraud-alert hidden">
+    <strong>🚨 FRAUD ALERT</strong>
+    <p id="fraud-alert-message"></p>
+</div>
+
+            <!-- Prediction Result -->
+            <div id="prediction-result" class="prediction-result">
+                <h2>Prediction Result</h2>
+                <p id="result-message">Enter transaction data and click Detect Fraud.</p>
+            </div>
+        </section>
+
+        <!-- Fraud Probability Visualization -->
+<div class="probability-container">
+
+    <div class="probability-header">
+        <span>Fraud Probability</span>
+        <span id="fraud-probability-value">0%</span>
+    </div>
+
+    <div class="probability-bar-background">
+        <div
+            id="fraud-probability-bar"
+            class="probability-bar"
+        ></div>
+    </div>
+
+</div>
+
+        <!-- Batch Prediction -->
+<section>
+    <h2>Batch Transaction Prediction</h2>
+
+    <div class="prediction-card">
+        <p>
+            Upload a CSV file containing multiple transactions
+            for batch fraud detection.
+        </p>
+
+        <input
+            type="file"
+            id="csv-file"
+            accept=".csv"
+        >
+
+        <button type="button" onclick="predictBatch()">
+            Run Batch Prediction
+        </button>
+
+        <div id="batch-result"></div>
+
+        <div id="batch-results-table"></div>
+        <button
+            type="button"
+            id="download-batch-btn"
+            onclick="downloadBatchResults()"
+            style="display: none;"
+        >
+            Download Results CSV
+        </button>
+    </div>
+</section>
+
+        <!-- Transaction History -->
+        <section>
+            <h2>Transaction History</h2>
+
+            <div class="history-search">
+    <input
+        type="text"
+        id="transaction-search"
+        placeholder="Search Transaction ID"
+    >
+    <button type="button" onclick="searchTransaction()">Search</button>
+    <button type="button" onclick="clearTransactionSearch()">Clear Search</button>
+</div>
+
+            <div class="history-filters">
+                <button type="button" onclick="filterTransactions('All')">All</button>
+                <button type="button" onclick="filterTransactions('Fraud')">Fraud</button>
+                <button type="button" onclick="filterTransactions('Legitimate')">Legitimate</button>
+                <button type="button" onclick="filterTransactions('High')">High Risk</button>
+                <button type="button" onclick="filterTransactions('Medium')">Medium Risk</button>
+                <button type="button" onclick="filterTransactions('Low')">Low Risk</button>
+                <button type="button" class="btn-clear" onclick="clearTransactionHistory()">Clear History</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Timestamp</th>
+                        <th>Fraud Probability</th>
+                        <th>Risk Level</th>
+                        <th>Prediction</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-table">
+                    <tr>
+                        <td colspan="5">No transactions found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    <div id="transaction-details" class="transaction-details"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

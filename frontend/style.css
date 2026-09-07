@@ -1,0 +1,382 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+header p {
+    margin-top: 0;
+    color: #666;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+.health-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.stat-card p {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: #007bff;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Risk Badges for Table */
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+}
+.badge.high { background-color: #ff4d4d; }
+.badge.medium { background-color: #ffc107; color: #333; }
+.badge.low { background-color: #28a745; }
+
+/* Prediction Section */
+.prediction-card,
+.prediction-result {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.sample-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.sample-buttons button {
+    background-color: #6c757d;
+}
+
+.sample-buttons button:hover {
+    background-color: #5a6268;
+}
+
+.threshold-control {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #ced4da;
+}
+
+.threshold-control input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.threshold-control p {
+    margin: 5px 0 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-grid div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+}
+
+input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.prediction-result {
+    min-height: 100px;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.result-item {
+    margin: 8px 0;
+}
+
+/* Feature Info Box */
+.feature-info {
+    margin: 15px 0 25px 0;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+}
+
+.feature-info p {
+    margin: 0;
+    line-height: 1.6;
+    color: #0d47a1;
+    font-size: 14px;
+}
+
+/* Urgent Fraud Alert Banner */
+.fraud-alert {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffe6e6;
+    border: 2px solid #ff4d4d;
+    color: #cc0000;
+    animation: flash 1s ease-in-out;
+}
+
+@keyframes flash {
+    0% { opacity: 0; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.fraud-alert strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.fraud-alert p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.fraud-alert.hidden {
+    display: none !important;
+}
+
+/* Chart Container */
+.chart-container {
+    margin-top: 15px;
+    margin-bottom: -10px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+#risk-chart {
+    width: 100%;
+    max-width: 350px;
+    max-height: 200px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .stats-grid, .input-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .stats-grid, .input-grid {
+        grid-template-columns: 1fr;
+    }
+    .sample-buttons {
+        flex-direction: column;
+    }
+}
+
+.shap-table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.shap-table th,
+.shap-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.shap-table th {
+    font-weight: bold;
+}
+
+#last-updated {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.history-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.history-filters button {
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.fraud-alert-panel {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.fraud-alert-panel h3 {
+    margin-top: 0;
+}
+
+.fraud-alert-panel.fraud {
+    border: 2px solid #dc3545;
+}
+
+.fraud-alert-panel.legitimate {
+    border: 2px solid #28a745;
+}
+
+.transaction-details {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Fraud Probability Visualization */
+
+.probability-container {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.probability-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.probability-bar-background {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Fraud Probability Bar */
+
+.probability-bar {
+    width: 0;
+    height: 100%;
+    min-width: 2px;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    background: green;
+}
