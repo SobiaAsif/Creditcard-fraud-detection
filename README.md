@@ -11,8 +11,15 @@ Try it here: **[https://creditcard-fraud-detection--sobiaasif370.replit.app/fron
 
 > Note: hosted on Replit's free tier — if the app has been idle, the first request may take a few seconds to wake up.
 
+## Screnshoots
+
 <img width="1335" height="645" alt="Capture" src="https://github.com/user-attachments/assets/dc189216-14c8-4e3d-a141-0dfb284c2fbf" />
 
+<img width="1340" height="645" alt="Capture2" src="https://github.com/user-attachments/assets/1e3227c0-9ab4-4d3c-8a64-9ca79cc65d50" />
+
+<img width="1337" height="642" alt="Capture3" src="https://github.com/user-attachments/assets/841443dc-0d6e-4c56-accd-0ff56e166bed" />
+
+<img width="1328" height="639" alt="Capture5" src="https://github.com/user-attachments/assets/d5cc33f0-8807-4f24-b4d2-ce8f8c88d6c8" />
 
 ## Overview
 
