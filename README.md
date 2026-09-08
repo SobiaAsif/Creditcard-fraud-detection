@@ -2,6 +2,15 @@
 
 A complete machine learning engineering project: from raw data to a deployed, interactive fraud detection dashboard — built to demonstrate the full pipeline, not just a trained model.
 
+## 🔗 Live Demo
+
+Try it here: **[https://creditcard-fraud-detection--sobiaasif370.replit.app/frontend/index.html](https://creditcard-fraud-detection--sobiaasif370.replit.app/frontend/index.html)**
+
+- Dashboard: `/frontend/index.html`
+- API health check: `/health`
+
+> Note: hosted on Replit's free tier — if the app has been idle, the first request may take a few seconds to wake up.
+
 ## Overview
 
 This project detects fraudulent credit card transactions using a highly imbalanced real-world dataset. It goes beyond training a model in a notebook — it includes a FastAPI backend, SHAP-based explainability, an adjustable detection threshold, batch prediction, live transaction monitoring, and a deployed dashboard.
