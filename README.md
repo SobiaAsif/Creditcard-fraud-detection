@@ -11,6 +11,9 @@ Try it here: **[https://creditcard-fraud-detection--sobiaasif370.replit.app/fron
 
 > Note: hosted on Replit's free tier — if the app has been idle, the first request may take a few seconds to wake up.
 
+<img width="1335" height="645" alt="Capture" src="https://github.com/user-attachments/assets/dc189216-14c8-4e3d-a141-0dfb284c2fbf" />
+
+
 ## Overview
 
 This project detects fraudulent credit card transactions using a highly imbalanced real-world dataset. It goes beyond training a model in a notebook — it includes a FastAPI backend, SHAP-based explainability, an adjustable detection threshold, batch prediction, live transaction monitoring, and a deployed dashboard.
